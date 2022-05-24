@@ -26,7 +26,9 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        sampleOne()
+//        sampleOne()
+        
+        sampleTwo()
     }
 
 
@@ -44,6 +46,19 @@ class ViewController: UIViewController {
 //        labelOvservable.bind(to: sampleLabel.rx.text).disposed(by: disposeBag)
         sampleTextField.rx.text.orEmpty.bind(to: sampleLabel.rx.text).disposed(by: disposeBag)
 
+    }
+    
+    func sampleTwo() {
+        // 非監視者
+        var textFieldOvservable = sampleTextField.rx.text.asObservable()
+        var labelOvservable = sampleLabel.rx.text.asObserver()
+
+        
+        textFieldOvservable.subscribe { text in
+            print("text: \(text)")
+            
+        }.disposed(by: disposeBag)
+        
     }
 }
 
