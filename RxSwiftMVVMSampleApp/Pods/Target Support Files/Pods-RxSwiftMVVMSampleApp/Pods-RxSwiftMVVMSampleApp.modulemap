@@ -1,0 +1,6 @@
+framework module Pods_RxSwiftMVVMSampleApp {
+  umbrella header "Pods-RxSwiftMVVMSampleApp-umbrella.h"
+
+  export *
+  module * { export * }
+}
