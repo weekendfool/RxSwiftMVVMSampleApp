@@ -28,7 +28,11 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view.
 //        sampleOne()
         
-        sampleTwo()
+//        sampleTwo()
+        
+//        sampleThree()
+        
+        sampleFour()
     }
 
 
@@ -58,6 +62,37 @@ class ViewController: UIViewController {
             print("text: \(text)")
             
         }.disposed(by: disposeBag)
+    }
+    
+    func sampleThree() {
+        // 非監視者
+        var textFieldOvservable = sampleTextField.rx.text.asObservable()
+        var labelOvservable = sampleLabel.rx.text.asObserver()
+
+        
+        textFieldOvservable.subscribe { text in
+            // ただ代入したい時はrx不必要？
+            self.sampleLabel.text = text
+            
+        }.disposed(by: disposeBag)
+    }
+    
+    private let subject = PublishSubject<String>()
+    public var observable: Observable<String> {
+        return subject.asObserver()
+    }
+    
+    func sampleFour() {
+        subject.onNext(sampleTextField.text!)
+//        subject.onCompleted()
+        
+        observable.subscribe { event in
+            print("event: \(event)")
+        } onCompleted: {
+            print("onCompleted")
+       
+        }
+
         
     }
 }
