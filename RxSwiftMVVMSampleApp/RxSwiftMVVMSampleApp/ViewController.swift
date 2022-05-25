@@ -13,6 +13,7 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var sampleTextField: UITextField!
     @IBOutlet weak var sampleLabel: UILabel!
+    @IBOutlet weak var samplePasswordTextField: UITextField!
     @IBOutlet weak var sampleButton: UIButton!
     
     // 購読の監視
@@ -20,7 +21,7 @@ class ViewController: UIViewController {
     // model
 //    var model: ModelProtocol
     // viewModel
-    lazy var viewModel: ViewModel = ViewModel(model: Model())
+    var viewModel: ViewModelType!
     
     
     override func viewDidLoad() {
@@ -36,7 +37,11 @@ class ViewController: UIViewController {
         
 //        sampleFive()
         
-        sampleSix()
+//        sampleSix()
+        
+        sampleSeven()
+        
+
     }
 
 
@@ -120,6 +125,32 @@ class ViewController: UIViewController {
         
         userNameValid.bind(to: sampleButton.rx.isHidden)
             .disposed(by: disposeBag)
+    }
+    
+    func sampleSeven() {
+        viewModel = ViewModel(model: Model())
+        
+        sampleTextField.rx.text.orEmpty
+            .bind(to: viewModel.inputs.email)
+            .disposed(by: disposeBag)
+        
+        samplePasswordTextField.rx.text.orEmpty
+            .bind(to: viewModel.inputs.password)
+            .disposed(by: disposeBag)
+        
+        viewModel.outputs.isSignUpButtonEnabled.drive(sampleButton.rx.isEnabled)
+            .disposed(by: disposeBag)
+        
+        
+        // input
+        sampleButton.rx.tap.asSignal()
+            .emit(to: viewModel.inputs.tap)
+            .disposed(by: disposeBag)
+        
+        // output
+//        sampleButton.rx.tap.asSignal()
+//            .asDriver(onErrorDriveWith: sampleLabel.rx.isEnabled)
+//            .disposed(by: disposeBag)
     }
     
     

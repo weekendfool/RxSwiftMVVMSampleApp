@@ -8,10 +8,17 @@
 import Foundation
 
 protocol ModelProtocol {
-    
+    func isEnableEmail(email: String) -> Bool
 }
 
 
 final class Model: ModelProtocol {
     
+    func isEnableEmail(email: String) -> Bool {
+        let args = "[A-Z0-9a-z._+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
+        
+        let validation = NSPredicate(format: "SELF MATCHES %@", args)
+        
+        return validation.evaluate(with: email)
+    }
 }
