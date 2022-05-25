@@ -34,7 +34,9 @@ class ViewController: UIViewController {
         
 //        sampleFour()
         
-        sampleFive()
+//        sampleFive()
+        
+        sampleSix()
     }
 
 
@@ -103,6 +105,24 @@ class ViewController: UIViewController {
             self?.sampleLabel.text = text
         }).disposed(by: disposeBag)
     }
+    
+    func sampleSix() {
+        let userNameValid = sampleTextField.rx.text
+            .map { text -> Bool in
+                print("validation")
+                
+                return text!.count >= 1
+            }
+        
+        // userNameValidの動きに対応させたいものをbind(to:)にかく
+        userNameValid.bind(to: sampleLabel.rx.isHidden)
+            .disposed(by: disposeBag)
+        
+        userNameValid.bind(to: sampleButton.rx.isHidden)
+            .disposed(by: disposeBag)
+    }
+    
+    
         
 }
 
