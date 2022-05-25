@@ -32,7 +32,9 @@ class ViewController: UIViewController {
         
 //        sampleThree()
         
-        sampleFour()
+//        sampleFour()
+        
+        sampleFive()
     }
 
 
@@ -95,5 +97,12 @@ class ViewController: UIViewController {
 
         
     }
+    
+    func sampleFive() {
+        sampleTextField.rx.text.subscribe(onNext: { [weak self] text in
+            self?.sampleLabel.text = text
+        }).disposed(by: disposeBag)
+    }
+        
 }
 
