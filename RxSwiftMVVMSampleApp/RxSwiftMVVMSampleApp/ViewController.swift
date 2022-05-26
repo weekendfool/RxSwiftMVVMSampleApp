@@ -50,7 +50,9 @@ class ViewController: UIViewController {
         
 //        sampleEleven()
         
-        sampleTwelve()
+//        sampleTwelve()
+        
+        sampleThirteen()
         
 
     }
@@ -244,6 +246,43 @@ class ViewController: UIViewController {
                 self.sampleLabel.text = $0.element
             }
             .disposed(by: disposeBag)
+
+    }
+    
+    func sampleThirteen() {
+        // 初期化
+        sampleLabel.text = "No Neme"
+        
+        // input
+        // bainndを行う
+        sampleTextField.rx.text.orEmpty.asObservable()
+            .subscribe { [weak self] in
+                guard let self = self else { return }
+                guard let value = $0.element else { return }
+                self.viewModel2.set(text: value)
+            }
+            .disposed(by: disposeBag)
+        
+        sampleButton.rx.tap.asObservable()
+            .subscribe { [weak self] in
+                guard let self = self else { return }
+                self.viewModel2.setting(tap: $0.element!)
+            }
+            .disposed(by: disposeBag)
+        
+        // output
+        viewModel2.statue.asObservable()
+            .subscribe { [weak self] in
+                guard let self = self else { return }
+                
+                if $0.element! {
+                    self.sampleButton.backgroundColor = .red
+                } else {
+                    self.sampleButton.backgroundColor = .blue
+                }
+            }
+            .disposed(by: disposeBag)
+        
 
     }
     

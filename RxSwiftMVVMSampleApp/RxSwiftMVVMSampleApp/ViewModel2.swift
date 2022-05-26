@@ -22,13 +22,46 @@ class ViewModel2 {
     
     private let tapSubject = PublishSubject<Bool>()
     
+    //　nameSubjectが外部に値を渡すために設けた窓口のイメージ
+    var name: Observable<String> {
+        return nameSubject
+    }
+    
+    var statue: Observable<Bool> {
+        return statueSubject
+    }
+    
+    private let statueSubject = PublishSubject<Bool>()
+    
+    // カプセル化、このクラスのみで使用可能にする
+    private let nameSubject = PublishSubject<String>()
+    
+    enum statue {
+        case on
+        case off
+    }
+    
+    private var mine: statue = .off
+    
     func set(text: String) {
         titleSubject.onNext(text)
     }
     
     func setting(tap: Void) {
-        print("okok")
-        titleSubject.onNext("五条悟")
+        if mine == .off {
+            mine = .on
+            print("onになったよ")
+            statueSubject.onNext(true)
+        } else {
+            mine = .off
+            print("offになったよ")
+            statueSubject.onNext(false)
+        }
+    }
+    
+    func getUserName(name: String) {
+        print("name\(name)")
+        titleSubject.onNext(name)
     }
 }
 
