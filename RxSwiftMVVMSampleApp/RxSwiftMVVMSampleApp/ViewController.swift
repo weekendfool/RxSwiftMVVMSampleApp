@@ -39,7 +39,9 @@ class ViewController: UIViewController {
         
 //        sampleSix()
         
-        sampleSeven()
+//        sampleSeven()
+        
+        sampleEight()
         
 
     }
@@ -143,9 +145,9 @@ class ViewController: UIViewController {
         
         
         // input
-        sampleButton.rx.tap.asSignal()
-            .emit(to: viewModel.inputs.tap)
-            .disposed(by: disposeBag)
+//        sampleButton.rx.tap.asSignal()
+//            .emit(to: viewModel.inputs.tap)
+//            .disposed(by: disposeBag)
         
         // output
 //        sampleButton.rx.tap.asSignal()
@@ -153,6 +155,29 @@ class ViewController: UIViewController {
 //            .disposed(by: disposeBag)
     }
     
+    func sampleEight() {
+    
+        var labelObservable = sampleTextField.rx.text.orEmpty.asObserver()
+        var buttonObservable = sampleButton.rx.tap.asObservable()
+        
+        buttonObservable.subscribe { [weak self] in
+            print("ok")
+            self!.sampleLabel.text = "ok"
+        }
+        
+//        sampleButton.isHidden = true
+//        labelObservable.onNext("a")
+        
+//        labelObservable.subscribe { [weak self] in
+//            print("text: \(text)")
+//            if text.count >= 4 {
+//
+//            }
+//        }
+//        
+        
+        
+    }
     
         
 }

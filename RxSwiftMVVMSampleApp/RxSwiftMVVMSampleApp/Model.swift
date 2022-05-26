@@ -9,6 +9,7 @@ import Foundation
 
 protocol ModelProtocol {
     func isEnableEmail(email: String) -> Bool
+    func plusName(word: String) -> String
 }
 
 
@@ -20,5 +21,9 @@ final class Model: ModelProtocol {
         let validation = NSPredicate(format: "SELF MATCHES %@", args)
         
         return validation.evaluate(with: email)
+    }
+    
+    func plusName(word: String) -> String {
+        return word + "Augmented Reality"
     }
 }

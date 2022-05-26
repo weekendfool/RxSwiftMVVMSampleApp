@@ -9,46 +9,50 @@ import Foundation
 import RxSwift
 import RxCocoa
 
+
+// protocolを噛ませることでinputかoutputかの判別をしやすく
 protocol ViewModelInputs {
     var email: BehaviorRelay<String> { get }
     var password: BehaviorRelay<String> { get }
     
-    var tap: PublishRelay<Void> { get }
+//    var tap: Observable<Void> { get }
 }
 
 protocol ViewModelOutputs {
     var isSignUpButtonEnabled: Driver<Bool> { get }
-//    var resetTextField: Driver<String> { get }
+//    var resetTextField: PublishSubject<Void> { get }
+    
+//    var reset: Driver<Bool> { get }
 }
 
+// ViewModelTypeを噛ませることでinputかoutputかの判別をしやすく
 protocol ViewModelType {
+    
     var inputs: ViewModelInputs { get }
     var outputs: ViewModelOutputs { get }
 }
 
 class ViewModel: ViewModelType, ViewModelInputs, ViewModelOutputs {
-    
-    
-    
-    
+  
     // MARK: - 変数
     var model: ModelProtocol
-    
+    //　inputsは情報の受け取りだからobserver
     var inputs: ViewModelInputs { return self }
+    //　outputsは情報を処理して発信側するからobservable
     var outputs: ViewModelOutputs { return self }
     
-    var count = 0
     
     // MARK: - inputs
     var email = BehaviorRelay<String>(value: "")
     var password = BehaviorRelay<String>(value: "")
     
-    var tap: PublishRelay<Void>
+//    var tap: Observable<Void>
     
     // MARK: - output
     var isSignUpButtonEnabled: Driver<Bool>
-//    var resetTextField: Driver<String>
-    
+//    var resetTextField: PublishSubject<Void>
+//    var reset: Driver<Bool>
+   
         
     // MARK: - 関数
     init(model: ModelProtocol) {
@@ -61,8 +65,7 @@ class ViewModel: ViewModelType, ViewModelInputs, ViewModelOutputs {
             })
             .asDriver(onErrorDriveWith: .empty())
         
-        // textField消去
-//        resetTextField = Observable<String>
+//        reset = inputs.tap.subscribe
         
     }
     
