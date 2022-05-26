@@ -22,6 +22,7 @@
 		8C8E27A4283D1C53004EE8D4 /* RxSwiftMVVMSampleAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C8E27A3283D1C53004EE8D4 /* RxSwiftMVVMSampleAppUITestsLaunchTests.swift */; };
 		8C8E27B1283D1F03004EE8D4 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C8E27B0283D1F03004EE8D4 /* Model.swift */; };
 		8C8E27B3283D1F14004EE8D4 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C8E27B2283D1F14004EE8D4 /* ViewModel.swift */; };
+		8C926C1E283FE77C008512BC /* ViewModel2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C926C1D283FE77C008512BC /* ViewModel2.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +65,7 @@
 		8C8E27A3283D1C53004EE8D4 /* RxSwiftMVVMSampleAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxSwiftMVVMSampleAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		8C8E27B0283D1F03004EE8D4 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		8C8E27B2283D1F14004EE8D4 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		8C926C1D283FE77C008512BC /* ViewModel2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel2.swift; sourceTree = "<group>"; };
 		D543AC73C4F374189EDC3EC3 /* Pods-RxSwiftMVVMSampleApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxSwiftMVVMSampleApp.debug.xcconfig"; path = "Target Support Files/Pods-RxSwiftMVVMSampleApp/Pods-RxSwiftMVVMSampleApp.debug.xcconfig"; sourceTree = "<group>"; };
 		FCE6F81B1A80D7FCC843106D /* Pods-RxSwiftMVVMSampleApp-RxSwiftMVVMSampleAppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxSwiftMVVMSampleApp-RxSwiftMVVMSampleAppUITests.release.xcconfig"; path = "Target Support Files/Pods-RxSwiftMVVMSampleApp-RxSwiftMVVMSampleAppUITests/Pods-RxSwiftMVVMSampleApp-RxSwiftMVVMSampleAppUITests.release.xcconfig"; sourceTree = "<group>"; };
 		FFC60D4D4A380E30355A16B0 /* Pods-RxSwiftMVVMSampleApp-RxSwiftMVVMSampleAppUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxSwiftMVVMSampleApp-RxSwiftMVVMSampleAppUITests.debug.xcconfig"; path = "Target Support Files/Pods-RxSwiftMVVMSampleApp-RxSwiftMVVMSampleAppUITests/Pods-RxSwiftMVVMSampleApp-RxSwiftMVVMSampleAppUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -136,8 +138,9 @@
 				8C8E277F283D1C50004EE8D4 /* SceneDelegate.swift */,
 				8C8E2781283D1C50004EE8D4 /* ViewController.swift */,
 				8C8E27B0283D1F03004EE8D4 /* Model.swift */,
-				8C8E27B2283D1F14004EE8D4 /* ViewModel.swift */,
 				8C8E2783283D1C50004EE8D4 /* Main.storyboard */,
+				8C8E27B2283D1F14004EE8D4 /* ViewModel.swift */,
+				8C926C1D283FE77C008512BC /* ViewModel2.swift */,
 				8C8E2789283D1C52004EE8D4 /* Assets.xcassets */,
 				8C8E278B283D1C52004EE8D4 /* LaunchScreen.storyboard */,
 				8C8E278E283D1C52004EE8D4 /* Info.plist */,
@@ -418,6 +421,7 @@
 				8C8E27B1283D1F03004EE8D4 /* Model.swift in Sources */,
 				8C8E2782283D1C50004EE8D4 /* ViewController.swift in Sources */,
 				8C8E277E283D1C50004EE8D4 /* AppDelegate.swift in Sources */,
+				8C926C1E283FE77C008512BC /* ViewModel2.swift in Sources */,
 				8C8E2780283D1C50004EE8D4 /* SceneDelegate.swift in Sources */,
 				8C8E27B3283D1F14004EE8D4 /* ViewModel.swift in Sources */,
 				8C8E2788283D1C50004EE8D4 /* RxSwiftMVVMSampleApp.xcdatamodeld in Sources */,

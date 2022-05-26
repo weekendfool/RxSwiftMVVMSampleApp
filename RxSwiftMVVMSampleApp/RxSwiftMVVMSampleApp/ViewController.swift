@@ -22,6 +22,7 @@ class ViewController: UIViewController {
 //    var model: ModelProtocol
     // viewModel
     var viewModel: ViewModelType!
+    var viewModel2: ViewModel2 = ViewModel2()
     
     
     override func viewDidLoad() {
@@ -41,7 +42,15 @@ class ViewController: UIViewController {
         
 //        sampleSeven()
         
-        sampleEight()
+//        sampleEight()
+        
+//        sampleNine()
+        
+//        sampleTen()
+        
+//        sampleEleven()
+        
+        sampleTwelve()
         
 
     }
@@ -174,11 +183,70 @@ class ViewController: UIViewController {
 //
 //            }
 //        }
-//        
+//
         
         
     }
     
+    func sampleNine() {
+        // textFieldを購読
+        //　sampleTextFieldのテキストを監視
+        // sampleLabelが購読
+        // ストリームがsampleTextFieldのテキスト
+        sampleTextField.rx.text.bind(to: sampleLabel.rx.text)
+            .disposed(by: disposeBag)
         
+    }
+    
+    func sampleTen() {
+        sampleTextField.rx.text.subscribe { [weak self] text in
+            self!.sampleLabel.text = text
+        }
+        .disposed(by: disposeBag)
+
+    }
+    
+    func sampleEleven() {
+        // bindを行う
+        sampleTextField.rx.text.orEmpty.asObservable()
+            .subscribe { [weak self] in
+                // viewModelに値の変更を通知
+                guard let self = self else { return }
+                guard let value = $0.element else  { return }
+                self.viewModel2.set(text: value)
+            }
+            .disposed(by: disposeBag)
+        
+        viewModel2.title.asObservable()
+            .subscribe { [weak self] in
+                // viewModelの更新を受け取る
+                guard let self = self else { return }
+                self.sampleLabel.text = $0.element
+            }
+            .disposed(by: disposeBag)
+    }
+    
+    func sampleTwelve() {
+        // buttonのタップのbindを行う
+        sampleButton.rx.tap.asObservable()
+            .subscribe { [weak self] event in
+                // viewModel2にタップを通知
+                guard let self = self else { return }
+//                guard let tap = $0.self else { return }
+                self.viewModel2.setting(tap: event.element!)
+            }
+            .disposed(by: disposeBag)
+        
+        viewModel2.title.asObservable()
+            .subscribe { [weak self] in
+                // viewModel2の更新を受け取る
+                guard let self = self else { return }
+                self.sampleLabel.text = $0.element
+            }
+            .disposed(by: disposeBag)
+
+    }
+    
+    
 }
 
